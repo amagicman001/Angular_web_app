@@ -1,0 +1,122 @@
+<div class="dashboard-home fade-in">
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        <mat-icon class="hero-icon">auto_stories</mat-icon>
+        Welcome to BookStore Admin
+      </h1>
+      <p class="hero-subtitle">Manage your literary empire with style and efficiency</p>
+    </div>
+    <div class="hero-image">
+      <div class="book-stack">
+        <div class="book book-1"></div>
+        <div class="book book-2"></div>
+        <div class="book book-3"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Grid -->
+  <div class="stats-section">
+    <h2 class="section-title">
+      <mat-icon>analytics</mat-icon>
+      Overview
+    </h2>
+    <div class="stats-grid">
+      <mat-card class="stat-card" *ngFor="let stat of stats" [class]="'stat-' + stat.color">
+        <mat-card-content>
+          <div class="stat-content">
+            <div class="stat-icon">
+              <mat-icon>{{ stat.icon }}</mat-icon>
+            </div>
+            <div class="stat-info">
+              <div class="stat-value">{{ stat.value }}</div>
+              <div class="stat-title">{{ stat.title }}</div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="actions-section">
+    <h2 class="section-title">
+      <mat-icon>flash_on</mat-icon>
+      Quick Actions
+    </h2>
+    <div class="actions-grid">
+      <mat-card class="action-card" *ngFor="let action of quickActions" [routerLink]="action.route">
+        <mat-card-content>
+          <div class="action-content">
+            <div class="action-icon">
+              <mat-icon>{{ action.icon }}</mat-icon>
+            </div>
+            <div class="action-info">
+              <h3 class="action-title">{{ action.title }}</h3>
+              <p class="action-subtitle">{{ action.subtitle }}</p>
+            </div>
+            <mat-icon class="action-arrow">arrow_forward</mat-icon>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <!-- Recent Activity -->
+  <div class="activity-section">
+    <h2 class="section-title">
+      <mat-icon>history</mat-icon>
+      Recent Activity
+    </h2>
+    <mat-card class="activity-card">
+      <mat-card-content>
+        <div class="activity-list">
+          <div class="activity-item" *ngFor="let activity of recentActivity">
+            <div class="activity-icon">
+              <mat-icon>{{ activity.icon }}</mat-icon>
+            </div>
+            <div class="activity-content">
+              <div class="activity-text">
+                <span class="activity-action">{{ activity.action }}</span>
+                <strong class="activity-item-name">{{ activity.item }}</strong>
+              </div>
+              <div class="activity-time">{{ activity.time }}</div>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Featured Books Section -->
+  <div class="featured-section">
+    <h2 class="section-title">
+      <mat-icon>star</mat-icon>
+      Featured Books
+    </h2>
+    <div class="featured-grid">
+      <div class="featured-book">
+        <div class="book-cover cover-1">
+          <div class="book-title">The Great Gatsby</div>
+        </div>
+      </div>
+      <div class="featured-book">
+        <div class="book-cover cover-2">
+          <div class="book-title">To Kill a Mockingbird</div>
+        </div>
+      </div>
+      <div class="featured-book">
+        <div class="book-cover cover-3">
+          <div class="book-title">1984</div>
+        </div>
+      </div>
+      <div class="featured-book">
+        <div class="book-cover cover-4">
+          <div class="book-title">Pride & Prejudice</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

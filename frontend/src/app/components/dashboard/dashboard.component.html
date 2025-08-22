@@ -1,0 +1,53 @@
+<mat-sidenav-container class="dashboard-sidenav-container">
+  <mat-sidenav mode="side" opened class="dashboard-sidenav">
+    <div class="sidenav-header">
+      <div class="brand-logo">
+        <mat-icon class="brand-icon">menu_book</mat-icon>
+        <span class="brand-text">BookStore</span>
+      </div>
+      <div class="admin-badge">Admin Panel</div>
+    </div>
+    
+    <mat-nav-list class="nav-menu">
+      <div class="nav-section">
+        <div class="nav-section-title">Management</div>
+        <a mat-list-item routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" class="nav-item">
+          <mat-icon matListItemIcon>dashboard</mat-icon>
+          <span matListItemTitle>Dashboard</span>
+        </a>
+        <a mat-list-item routerLink="/books" routerLinkActive="active-link" class="nav-item">
+          <mat-icon matListItemIcon>library_books</mat-icon>
+          <span matListItemTitle>Books</span>
+        </a>
+        <a mat-list-item routerLink="/categories" routerLinkActive="active-link" class="nav-item">
+          <mat-icon matListItemIcon>category</mat-icon>
+          <span matListItemTitle>Categories</span>
+        </a>
+        <a mat-list-item routerLink="/inventory" routerLinkActive="active-link" class="nav-item">
+          <mat-icon matListItemIcon>inventory</mat-icon>
+          <span matListItemTitle>Inventory</span>
+        </a>
+      </div>
+      
+      <div class="nav-section">
+        <div class="nav-section-title">Account</div>
+        <a mat-list-item (click)="logout()" class="nav-item logout-item">
+          <mat-icon matListItemIcon>logout</mat-icon>
+          <span matListItemTitle>Logout</span>
+        </a>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  
+  <mat-sidenav-content class="main-content">
+    <mat-toolbar class="top-toolbar">
+      <span class="toolbar-title">Bookstore Admin Dashboard</span>
+      <span class="spacer"></span>
+      <mat-icon class="toolbar-icon">account_circle</mat-icon>
+    </mat-toolbar>
+    
+    <div class="dashboard-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

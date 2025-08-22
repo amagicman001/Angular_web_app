@@ -1,0 +1,187 @@
+.book-form-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 32px;
+  
+  .page-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+    
+    .title-icon {
+      font-size: 36px;
+      width: 36px;
+      height: 36px;
+      color: var(--primary-color);
+    }
+  }
+  
+  .page-subtitle {
+    color: var(--text-secondary);
+    font-size: 16px;
+    margin: 0;
+  }
+}
+
+.form-card {
+  .book-form {
+    .form-section {
+      margin-bottom: 32px;
+      
+      .section-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0 0 20px 0;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--border);
+        
+        mat-icon {
+          color: var(--primary-color);
+          font-size: 20px;
+          width: 20px;
+          height: 20px;
+        }
+      }
+      
+      .form-row {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 16px;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+        
+        .full-width {
+          flex: 1;
+        }
+        
+        .half-width {
+          flex: 1;
+        }
+        
+        @media (max-width: 768px) {
+          flex-direction: column;
+          gap: 0;
+        }
+      }
+    }
+    
+    .mat-mdc-form-field {
+      .mat-mdc-form-field-prefix {
+        color: var(--text-secondary);
+        margin-right: 12px;
+        display: flex;
+        align-items: center;
+      }
+      
+      .mat-mdc-form-field-hint {
+        color: var(--text-secondary);
+        font-size: 12px;
+      }
+    }
+    
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 16px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      
+      .cancel-button {
+        color: var(--text-secondary);
+        
+        mat-icon {
+          margin-right: 8px;
+        }
+      }
+      
+      .submit-button {
+        min-width: 140px;
+        height: 48px;
+        font-weight: 600;
+        
+        mat-icon {
+          margin-right: 8px;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        flex-direction: column-reverse;
+        
+        button {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// Enhanced form field styling
+.mat-mdc-form-field {
+  &.mat-form-field-appearance-outline {
+    .mat-mdc-form-field-outline {
+      border-radius: 12px;
+    }
+    
+    &.mat-focused {
+      .mat-mdc-form-field-outline-thick {
+        border-color: var(--primary-color);
+      }
+    }
+  }
+  
+  .mat-mdc-input-element {
+    &::placeholder {
+      color: var(--text-secondary);
+      opacity: 0.7;
+    }
+  }
+  
+  textarea.mat-mdc-input-element {
+    min-height: 100px;
+    resize: vertical;
+  }
+}
+
+// Error message styling
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .book-form-container {
+    padding: 0 16px;
+  }
+  
+  .page-header {
+    .page-title {
+      font-size: 28px;
+    }
+  }
+  
+  .form-card {
+    margin: 0;
+  }
+}

@@ -1,0 +1,124 @@
+<div class="book-form-container fade-in">
+  <div class="page-header">
+    <h1 class="page-title">
+      <mat-icon class="title-icon">{{ editMode ? 'edit' : 'add' }}</mat-icon>
+      {{ editMode ? 'Edit Book' : 'Add New Book' }}
+    </h1>
+    <p class="page-subtitle">{{ editMode ? 'Update book information' : 'Add a new book to your inventory' }}</p>
+  </div>
+
+  <mat-card class="form-card">
+    <mat-card-content>
+      <form [formGroup]="bookForm" (ngSubmit)="submit()" class="book-form">
+        <div class="form-section">
+          <h3 class="section-title">
+            <mat-icon>info</mat-icon>
+            Basic Information
+          </h3>
+          
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Book Title</mat-label>
+              <input matInput formControlName="title" placeholder="Enter book title" />
+              <mat-icon matPrefix>title</mat-icon>
+              <mat-error *ngIf="bookForm.get('title')?.invalid && bookForm.get('title')?.touched">
+                Book title is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="half-width">
+              <mat-label>Author</mat-label>
+              <input matInput formControlName="author" placeholder="Author name" />
+              <mat-icon matPrefix>person</mat-icon>
+              <mat-error *ngIf="bookForm.get('author')?.invalid && bookForm.get('author')?.touched">
+                Author name is required
+              </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline" class="half-width">
+              <mat-label>ISBN</mat-label>
+              <input matInput formControlName="isbn" placeholder="978-0-123456-78-9" />
+              <mat-icon matPrefix>qr_code</mat-icon>
+              <mat-error *ngIf="bookForm.get('isbn')?.invalid && bookForm.get('isbn')?.touched">
+                ISBN is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3 class="section-title">
+            <mat-icon>attach_money</mat-icon>
+            Pricing & Inventory
+          </h3>
+          
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="half-width">
+              <mat-label>Price</mat-label>
+              <input matInput formControlName="price" type="number" step="0.01" placeholder="0.00" />
+              <span matPrefix>$&nbsp;</span>
+              <mat-error *ngIf="bookForm.get('price')?.invalid && bookForm.get('price')?.touched">
+                Price is required
+              </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline" class="half-width">
+              <mat-label>Stock Quantity</mat-label>
+              <input matInput formControlName="stock" type="number" placeholder="0" />
+              <mat-icon matPrefix>inventory</mat-icon>
+              <mat-error *ngIf="bookForm.get('stock')?.invalid && bookForm.get('stock')?.touched">
+                Stock quantity is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Category</mat-label>
+              <input matInput formControlName="category_id" type="number" placeholder="Category ID" />
+              <mat-icon matPrefix>category</mat-icon>
+              <mat-error *ngIf="bookForm.get('category_id')?.invalid && bookForm.get('category_id')?.touched">
+                Category is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3 class="section-title">
+            <mat-icon>description</mat-icon>
+            Description
+          </h3>
+          
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Book Description</mat-label>
+              <textarea matInput formControlName="description" rows="4" placeholder="Enter book description..."></textarea>
+              <mat-hint>Optional: Provide a brief description of the book</mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="error-message" *ngIf="error">
+          <mat-icon>error_outline</mat-icon>
+          {{ error }}
+        </div>
+
+        <div class="form-actions">
+          <button mat-button type="button" routerLink="/books" class="cancel-button">
+            <mat-icon>cancel</mat-icon>
+            Cancel
+          </button>
+          
+          <button mat-raised-button color="primary" type="submit" [disabled]="loading || bookForm.invalid" class="submit-button">
+            <mat-icon *ngIf="loading">hourglass_empty</mat-icon>
+            <mat-icon *ngIf="!loading">{{ editMode ? 'save' : 'add' }}</mat-icon>
+            {{ loading ? 'Saving...' : (editMode ? 'Update Book' : 'Add Book') }}
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

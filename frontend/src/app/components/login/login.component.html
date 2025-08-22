@@ -1,0 +1,43 @@
+<div class="login-container">
+  <mat-card class="login-card fade-in">
+    <mat-card-header class="login-header">
+      <div class="login-icon">
+        <mat-icon>admin_panel_settings</mat-icon>
+      </div>
+      <mat-card-title class="login-title">Admin Portal</mat-card-title>
+      <mat-card-subtitle class="login-subtitle">Sign in to manage your bookstore</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="login-content">
+      <form [formGroup]="loginForm" (ngSubmit)="submit()" class="login-form">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email Address</mat-label>
+          <input matInput formControlName="email" type="email" placeholder="admin@bookstore.com" />
+          <mat-icon matPrefix>email</mat-icon>
+          <mat-error *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            Please enter a valid email address
+          </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" type="password" placeholder="Enter your password" />
+          <mat-icon matPrefix>lock</mat-icon>
+          <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            Password is required
+          </mat-error>
+        </mat-form-field>
+        
+        <div class="error-message" *ngIf="error">
+          <mat-icon>error_outline</mat-icon>
+          {{ error }}
+        </div>
+        
+        <button mat-raised-button color="primary" type="submit" [disabled]="loading" class="login-button full-width">
+          <mat-icon *ngIf="loading">hourglass_empty</mat-icon>
+          <mat-icon *ngIf="!loading">login</mat-icon>
+          {{ loading ? 'Signing in...' : 'Sign In' }}
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

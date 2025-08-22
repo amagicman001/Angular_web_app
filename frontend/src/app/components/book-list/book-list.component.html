@@ -1,0 +1,115 @@
+<div class="books-container fade-in">
+  <div class="page-header">
+    <div class="header-content">
+      <h1 class="page-title">
+        <mat-icon class="title-icon">library_books</mat-icon>
+        Books Management
+      </h1>
+      <p class="page-subtitle">Manage your bookstore inventory</p>
+    </div>
+    <button mat-raised-button color="primary" routerLink="/books/new" class="add-button">
+      <mat-icon>add</mat-icon>
+      Add New Book
+    </button>
+  </div>
+
+  <mat-card class="content-card">
+    <mat-card-content>
+      <div class="table-controls">
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>Search books...</mat-label>
+          <input matInput placeholder="Search by title, author, or ISBN">
+          <mat-icon matPrefix>search</mat-icon>
+        </mat-form-field>
+        
+        <div class="table-stats" *ngIf="books.length">
+          <span class="stats-text">{{ books.length }} books total</span>
+        </div>
+      </div>
+
+      <mat-progress-bar *ngIf="loading" mode="indeterminate" class="loading-bar"></mat-progress-bar>
+      
+      <div class="error-message" *ngIf="error">
+        <mat-icon>error_outline</mat-icon>
+        {{ error }}
+      </div>
+
+      <div class="table-container" *ngIf="!loading && books.length">
+        <table mat-table [dataSource]="books" class="books-table">
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>Title</th>
+            <td mat-cell *matCellDef="let book">
+              <div class="book-title">
+                <strong>{{ book.title }}</strong>
+              </div>
+            </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="author">
+            <th mat-header-cell *matHeaderCellDef>Author</th>
+            <td mat-cell *matCellDef="let book">
+              <div class="book-author">{{ book.author }}</div>
+            </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="isbn">
+            <th mat-header-cell *matHeaderCellDef>ISBN</th>
+            <td mat-cell *matCellDef="let book">
+              <code class="isbn-code">{{ book.isbn }}</code>
+            </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef>Price</th>
+            <td mat-cell *matCellDef="let book">
+              <span class="price-tag">${{ book.price }}</span>
+            </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="stock">
+            <th mat-header-cell *matHeaderCellDef>Stock</th>
+            <td mat-cell *matCellDef="let book">
+              <span class="stock-badge" [class.low-stock]="book.stock < 10" [class.out-of-stock]="book.stock === 0">
+                {{ book.stock }}
+              </span>
+            </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="category_id">
+            <th mat-header-cell *matHeaderCellDef>Category</th>
+            <td mat-cell *matCellDef="let book">
+              <span class="category-chip">{{ book.category_id }}</span>
+            </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let book">
+              <div class="action-buttons">
+                <button mat-icon-button color="primary" (click)="editBook(book.id)" matTooltip="Edit book">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="deleteBook(book.id)" matTooltip="Delete book">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </td>
+          </ng-container>
+          
+          <tr mat-header-row *matHeaderRowDef="['title','author','isbn','price','stock','category_id','actions']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['title','author','isbn','price','stock','category_id','actions'];"></tr>
+        </table>
+      </div>
+      
+      <div class="empty-state" *ngIf="!loading && !books.length">
+        <mat-icon class="empty-icon">library_books</mat-icon>
+        <h3>No books found</h3>
+        <p>Start by adding your first book to the inventory.</p>
+        <button mat-raised-button color="primary" routerLink="/books/new">
+          <mat-icon>add</mat-icon>
+          Add First Book
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
